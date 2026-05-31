@@ -1,0 +1,147 @@
+/* =========================================================
+   AETHEROS BLOSSOM v5.0 — ANIMATIONS
+   Keyframes, transitions, entrance effects
+   ========================================================= */
+
+/* ── Global keyframes ── */
+@keyframes spin         { to { transform: rotate(360deg); } }
+@keyframes spin-reverse { to { transform: rotate(-360deg); } }
+
+@keyframes float {
+  0%, 100% { opacity: 0.25; transform: translateY(0); }
+  50%       { opacity: 0.55; transform: translateY(-4px); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 10px var(--pink); }
+  50%       { opacity: 0.3; box-shadow: 0 0 4px  var(--pink); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1);    opacity: 1;   }
+  50%       { transform: scale(1.06); opacity: 0.7; }
+}
+
+@keyframes winOpen {
+  from { opacity: 0; transform: scale(0.91) translateY(14px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(24px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(0)    scale(1); }
+}
+
+@keyframes ctxOpen {
+  from { opacity: 0; transform: scale(0.94) translateY(-6px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+@keyframes lbIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes petalFall {
+  0%   { transform: translateY(-20px) rotate(0deg);   opacity: 0;   }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.2; }
+  100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes bootBarShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes lockAvatarGlow {
+  0%, 100% { box-shadow: 0 0 28px rgba(255,45,107,.35); }
+  50%       { box-shadow: 0 0 50px rgba(255,45,107,.55), 0 0 80px rgba(255,110,180,.2); }
+}
+
+/* ── Boot ── */
+.boot-ring-outer {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1.5px solid rgba(255,110,180,.14);
+  border-top-color:  var(--pink);
+  border-right-color: rgba(255,110,180,.4);
+  animation: spin 1.2s linear infinite;
+}
+.boot-ring-inner {
+  position: absolute; inset: 13px; border-radius: 50%;
+  border: 1px solid rgba(255,45,107,.1);
+  border-bottom-color: var(--rose);
+  animation: spin-reverse 0.8s linear infinite;
+}
+.boot-dot {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 13px; height: 13px; border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--pink) 50%, transparent 100%);
+  box-shadow: 0 0 18px var(--pink);
+}
+.boot-bar-fill {
+  background: linear-gradient(90deg, var(--crimson), var(--pink), var(--crimson));
+  background-size: 200% 100%;
+  box-shadow: 0 0 10px var(--pink);
+  animation: bootBarShimmer 2s linear infinite;
+  transition: width 0.1s ease;
+}
+
+/* ── Lock ── */
+.lock-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(180,0,60,.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 70%, rgba(255,110,180,.1) 0%, transparent 50%),
+    rgba(8,0,5,.94);
+  backdrop-filter: blur(60px) saturate(1.5);
+  -webkit-backdrop-filter: blur(60px) saturate(1.5);
+}
+.lock-avatar {
+  background: linear-gradient(145deg, var(--crimson), var(--pink));
+  box-shadow: 0 0 0 1px rgba(255,110,180,.2),
+              inset 0 1px 0 rgba(255,255,255,.15);
+  animation: lockAvatarGlow 3s ease-in-out infinite;
+}
+.lock-pin-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  border: 1.5px solid rgba(255,110,180,.3);
+  transition: all 0.2s var(--ease-spring);
+}
+.lock-pin-dot.filled {
+  background: var(--pink); border-color: var(--pink);
+  box-shadow: 0 0 12px var(--pink);
+  transform: scale(1.15);
+}
+
+/* ── Windows ── */
+.win.opening  { animation: winOpen 0.2s var(--ease-spring) both; }
+.notif        { animation: slideIn 0.3s var(--ease-spring) both; }
+#ctx-menu     { animation: ctxOpen 0.12s var(--ease-spring) both; }
+#lightbox.show { animation: lbIn 0.25s ease-in both; }
+
+/* ── Dock magnification helpers ── */
+.dock-icon { transition: transform 0.18s var(--ease-spring); }
+.dock-icon:hover { transform: translateY(-10px) scale(1.22); }
+
+/* ── Music spinner ── */
+.music-cover-spin { animation: spin 10s linear infinite; }
+@keyframes vizPulse {
+  0%, 100% { transform: scaleY(0.3); }
+  50%       { transform: scaleY(1.0); }
+}
+
+/* ── Kali terminal blink cursor ── */
+@keyframes termCursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.term-cursor { animation: termCursor 1s step-end infinite; }
+
+/* ── Theme card hover ── */
+.theme-card {
+  transition: transform var(--t-fast) var(--ease-spring),
+              border-color var(--t-fast) var(--ease-smooth);
+}
+.theme-card:hover { transform: scale(1.04) translateY(-2px); }
